@@ -49,6 +49,9 @@ catch {
 #Remove-Item -Path "C:\Temp\MailboxManager" -Force -Recurse
 
 Set-Location $downloadlocation
-Install-Module ps12exe
+# ps12exe v0.6.0+ uses grouped object parameters for optional settings, e.g.
+#   ps12exe -inputFile x.ps1 -outputFile x.exe -Resources @{Icon='icon.ico'} -App @{Windowed=$true}
+# -inputFile / -outputFile are unchanged.
+Install-Module ps12exe -Scope CurrentUser -Force
 ps12exe -inputFile .\MailboxManager.ps1 -outputFile .\MailboxManager.exe
 
